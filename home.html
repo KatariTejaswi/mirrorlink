@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glass Video Website</title>
+
+<!-- INTERNAL CSS -->
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 80%;
+        max-width: 900px;
+        padding: 40px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        color: #fff;
+    }
+
+    h1, h2 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        opacity: 0.9;
+    }
+
+    .btn {
+        padding: 12px 22px;
+        border: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+        cursor: pointer;
+        font-size: 15px;
+        transition: 0.3s;
+        margin: 8px;
+    }
+
+    .btn:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    video {
+        width: 100%;
+        max-width: 720px;
+        border-radius: 12px;
+        margin: 20px 0;
+        background: #000;
+    }
+
+    .page {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+
+    /* Glass Popup */
+    .popup {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup-content {
+        width: 320px;
+        padding: 30px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        text-align: center;
+        color: #fff;
+    }
+
+    .popup-content a {
+        display: block;
+        margin: 10px 0;
+        color: #fff;
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page active">
+        <h1>Welcome to My Website</h1>
+        <p>Click below to watch the video</p>
+        <button class="btn" onclick="showVideoPage()">Go to Video Page</button>
+    </div>
+
+    <!-- VIDEO PAGE -->
+    <div id="videoPage" class="page">
+        <h2>Video Player</h2>
+
+        <video controls>
+            <!-- Intentionally invalid video -->
+            <source src="video.mp4" type="video/mp4">
+        </video>
+
+        <br>
+
+        <button class="btn" onclick="showPopup()">
+            Video not playing? Click here
+        </button>
+
+        <br>
+
+        <button class="btn" onclick="goHome()">Back to Home</button>
+    </div>
+
+</div>
+
+<!-- GLASS POPUP -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <h3>Video not available</h3>
+        <p>Please try mirror links:</p>
+
+        <!-- Replace mirror links -->
+        <a href="https://drive.google.com/file/d/1Ope72HPjWhzwirWroVbmu5Ocgq6RO7jN/view?usp=sharing" target="_blank">Mirror Link 1</a>
+        <a href="https://github.com/KatariTejaswi/mirrorlink/blob/main/video.mp4" target="_blank">Mirror Link 2</a>
+
+        <button class="btn" onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<!-- INTERNAL JAVASCRIPT -->
+<script>
+    const homePage = document.getElementById("homePage");
+    const videoPage = document.getElementById("videoPage");
+    const popup = document.getElementById("popup");
+
+    function showVideoPage() {
+        homePage.classList.remove("active");
+        videoPage.classList.add("active");
+        popup.style.display = "none";
+    }
+
+    function goHome() {
+        videoPage.classList.remove("active");
+        homePage.classList.add("active");
+        popup.style.display = "none";
+    }
+
+    function showPopup() {
+        popup.style.display = "flex";
+    }
+
+    function closePopup() {
+        popup.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
